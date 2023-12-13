@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <locale>
 
 using namespace std;
@@ -9,7 +9,7 @@ using namespace std;
 *return 0 - все ок. return 1 - ошибка.
 */
 
-void vvod(int** matrix, int M) {
+void vvod(int matrix[50][50], int M) {
     cout << "Введите элементы матрицы:" << endl;
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < M; j++) {
@@ -18,7 +18,7 @@ void vvod(int** matrix, int M) {
     }
 }
 
-void obrabotka(int** matrix, int M) {
+void obrabotka(int matrix[50][50], int M) {
     matrix[0][0] = 0;
     for (int i = 1; i < M; i++) {
         matrix[i][i] = 0;
@@ -33,7 +33,7 @@ void obrabotka(int** matrix, int M) {
     }
 }
 
-void vivod(int** matrix, int M) {
+void vivod(int matrix[50][50], int M) {
     cout << "Результат:" << endl;
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < M; j++)
@@ -50,22 +50,15 @@ int main() {
     cout << "Введите порядок М квадратной матрицы: ";
     cin >> M;
 
-    if (M <= 0) {
-        cerr << "Порядок матрицы должен быть натуральным числом!";
+    if (M <= 0 || M > 50) {
+        cerr << "Порядок матрицы должен быть натуральным числом и не более 50!";
         return 1;
     }
 
-    int** matrix = new int* [M];
-    for (int i = 0; i < M; i++) {
-        matrix[i] = new int[M];
-    }
+    int matrix[50][50];
 
     vvod(matrix, M);
     obrabotka(matrix, M);
     vivod(matrix, M);
 
-    for (int i = 0; i < M; i++) {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
 }
